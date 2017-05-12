@@ -1,0 +1,135 @@
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>图像处理</title>
+	<style type="text/css">
+			.imagearea{
+				margin:auto;
+					 width:460px;
+					 height:260px;
+					 background::#FFF;				 
+					}
+			body{
+					background-image:url(image/bgi.jpg);
+					margin-top:100px;
+					
+					 					}
+			
+			.bt1{
+					margin-left:20px; }
+			.img2{
+					margin-left:15px; }
+			</style>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://malsup.github.io/jquery.form.js"></script>
+	<script type="text/javascript">
+	  function sub() {  
+	        // jquery 表单提交   
+	        $("#uploadimg").ajaxSubmit(function(message) {   
+	        // 对于表单提交成功后处理，message为返回内容   
+	        });   
+	  
+	        return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转   
+	    }
+
+</script>
+ <script type="application/ecmascript">
+ function setImagesLap(){
+		
+		var images=document.getElementsByTagName("img");
+		var file=document.getElementById("file").files;
+		 images[1].src="odata/lap"+file[0].name;
+		
+		}
+function setImagesLapcv(){
+		
+		var images=document.getElementsByTagName("img");
+		var file=document.getElementById("file").files;
+		 images[1].src="odata/lapcv"+file[0].name;
+		
+		}
+function setImagesSob(){
+		
+		var images=document.getElementsByTagName("img");
+		var file=document.getElementById("file").files;
+		 images[1].src="odata/sob"+file[0].name;
+		
+		}
+function setImagesSobcv(){
+		
+		var images=document.getElementsByTagName("img");
+		var file=document.getElementById("file").files;
+		 images[1].src="odata/sobcv"+file[0].name;
+		
+		}
+function setImagesSharp(){
+	
+	var images=document.getElementsByTagName("img");
+	var file=document.getElementById("file").files;
+	 images[1].src="odata/sharp"+file[0].name;
+	
+	}
+function setImagesBlurry(){
+	
+	var images=document.getElementsByTagName("img");
+	var file=document.getElementById("file").files;
+	 images[1].src="odata/blurry"+file[0].name;
+	
+	}
+</script> 
+	</head>
+<body>
+	
+	<h1 align="center" ><font color="#33FFFF">图像处理课程项目</font></h1>
+    <hr/>
+  
+    <div align="center">	
+    	<h3 ><font color="#999999">请选择要进行处理的图片</font></h3>
+     
+		<form id="uploadimg" action="UploadServlet" method="post" enctype="multipart/form-data" method="post"  onsubmit="return sub();">
+			<input id="file" align="center" type="file" name="file" size="50" />
+			<input type="submit" value="上传" />
+	 </form>
+	 </div>
+   
+    
+    
+    <div  class="imagearea" id="image"  align="center">
+        <img src="image/beforeprocess.jpg"  align="left" width="208" height="258"/>
+        <img  class="img2" src="image/afterprocess.jpg"  align="left" width="208" height="258"/>
+    </div>
+    
+    <hr/>
+    <div align="center">
+        <input  class="bt2" type="button"  value="Laplace算子" onclick="setImagesLap()">
+      	 
+        <input  class="bt1" type="button"  value="Laplace算子反转" onclick="setImagesLapcv()">
+         
+        <input class="bt1" type="button" value="Sobel算子" onclick="setImagesSob()">
+        
+        <input class="bt1" type="button" value="Sobel算子反转" onclick="setImagesSobcv()">
+
+		
+        <input class="bt1" type="button" value="图像锐化" onclick="setImagesSharp()">
+        
+        <input class="bt1" type="button" value="图像模糊" onclick="setImagesBlurry()">
+        </div>
+		<br/>
+		<br/>
+		<h1 align="right" ><font color="#33FFFF">Design by WuYujie</font></h1>
+   
+<script>
+document.getElementById('file').onchange = function() {
+    var imgFile = this.files[0];
+    var fr = new FileReader();
+    fr.onload = function() {
+        document.getElementById('image').getElementsByTagName('img')[0].src = fr.result;
+    };
+    fr.readAsDataURL(imgFile);
+};
+</script>
+ 
+
+		
+</body>
+</html>
